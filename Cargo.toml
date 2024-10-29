@@ -1,0 +1,22 @@
+[package]
+name = "rusty_pi"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[profile.dev]
+debug = true
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+lto = true
+
+
+[build]
+target = "aarch64-unknown-none"
+
+[target.aarch64-unknown-none]
+linker = "aarch64-elf-ld"
+rustflags = ["-C", "link-arg=-Tlinker.ld"]
